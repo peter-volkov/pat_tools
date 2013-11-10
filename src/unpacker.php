@@ -12,6 +12,11 @@
    
     unpack_pat();
 
+    header('Location: /php_antimalware_tool/scanner.php');
+    unlink(__FILE__);
+
+    
+
     
 ?>
  
