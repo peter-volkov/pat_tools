@@ -54,7 +54,6 @@ class Archiver
 					$this->dir_traverse($dir_path, $root);
 				} else {
                     $relative_path = str_replace($root, '', $file_path);
-                    print $file_path . PHP_EOL;
 					$this->add_file($file_path, $relative_path);    
 				}
 		    }  
@@ -66,7 +65,6 @@ class Archiver
     public function add_dir($path) {
         $this->dir_traverse($path);                 		
     }
-
 
 
     public function create_file($filename, $str) {
