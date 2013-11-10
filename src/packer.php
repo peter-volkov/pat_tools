@@ -14,7 +14,8 @@
 	   die(-2);
 	}
 
-    require_once("classes/Archiver.inc.php");
+    $root_dir = dirname($argv[0]);
+    require_once($root_dir . '/' . "classes/Archiver.inc.php");
 
     $pat_dir = empty($argv[2]) ? '/home/www/badcode.tk/external/pat_tools/src/packer.php' : $argv[1];     
     $archive_filename = empty($argv[2]) ? 'pat.zip' : $argv[2];
