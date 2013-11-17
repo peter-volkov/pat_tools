@@ -1,0 +1,69 @@
+body
+{
+  font-family: Calibri;
+}
+
+
+.content
+{
+
+}
+
+.upload_file
+{
+  margin: 0 0 20px 0;
+}
+
+.restable TABLE
+{
+   width: 960px;
+}
+
+.restable TH
+{
+  font-weight: 700;
+  background: cornflowerblue;
+}
+
+.restable TR.h TH
+{
+  font-weight: 700;
+  background: lightsteelblue;
+}
+
+
+
+.restable TD
+{
+   font-size: 14px;
+   font-family: Calibri;
+}
+
+.tr0
+{
+}
+
+.tr1
+{
+  background: #FAFAFA;
+}
+
+.filter_group
+{
+   margin: 10px 0 30px 0 
+}
+
+.startButton
+{
+   font-size: 24px;
+}
+
+h1 {
+   color: #000040;
+}
+
+h2 {
+   color: #000060;
+}
+
+
