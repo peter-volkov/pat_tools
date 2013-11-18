@@ -1,0 +1,1 @@
+<tr  align=left class="tr@@evenodd@@"><td>@@name@@</td><td>@@size@@</td><td>@@created@@</td><td>@@modified@@</td></tr>
