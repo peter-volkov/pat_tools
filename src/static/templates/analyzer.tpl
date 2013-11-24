@@ -8,7 +8,7 @@
 
 
 	<div class="header">
-	  <h1>Analyzer v0.1</h1>
+	  <h1>Analyzer v0.2</h1>
 	</div>
 
 

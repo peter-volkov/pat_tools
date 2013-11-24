@@ -87,6 +87,10 @@ private function parse_xml_filelist($doc) {
      }
 
      if (!isset($this->wl_files[$key])) {
+        if ($file_info->hasAttribute('detected')) {
+           $f['detected'] = $file_info->getAttribute('detected');
+        }
+        
         $files[] = $f;
      }
   }

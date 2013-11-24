@@ -19,6 +19,17 @@ body
    width: 960px;
 }
 
+.critical TD, h2
+{
+   color: red;
+}
+
+.warning TD, h2
+{
+   color: blue;
+}
+
+
 .restable TH
 {
   font-weight: 700;
