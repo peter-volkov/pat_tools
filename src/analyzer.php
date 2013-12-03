@@ -49,6 +49,8 @@ if (isset($_POST['a'])) {
         if ($item['detected'] == 'c') {
            $row->prepare();
            $row->set('name', $item['path']);
+           $row->set('snippet', $item['snippet']);
+           $row->set('pos', $item['pos']);
            $row->set('size', $item['size']);
            $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
@@ -68,6 +70,8 @@ if (isset($_POST['a'])) {
            $row->prepare();
            $row->set('name', $item['path']);
            $row->set('size', $item['size']);
+           $row->set('snippet', $item['snippet']);
+           $row->set('pos', $item['pos']);
            $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
            $row->set('evenodd', $i % 2);
