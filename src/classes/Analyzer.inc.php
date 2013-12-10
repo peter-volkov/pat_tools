@@ -89,6 +89,11 @@ private function parse_xml_filelist($doc) {
      if (!isset($this->wl_files[$key])) {
         if ($file_info->hasAttribute('detected')) {
            $f['detected'] = $file_info->getAttribute('detected');
+           $f['snippet'] = $file_info->getAttribute('snippet');
+
+           $f['snippet'] = str_replace('@_MARKER_@', '<b><font color=#FF00FF>|</font></b>', $f['snippet']);
+
+           $f['pos'] = $file_info->getAttribute('pos');
         }
         
         $files[] = $f;
