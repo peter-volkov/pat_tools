@@ -1,4 +1,5 @@
 <?php
+require_once("XmlValidator.inc.php");
 
 class Analyzer
 {
@@ -51,7 +52,18 @@ function parse_xml() {
      }
   }
 
+  if (!filesize($this->xml_filename)) {
+     die('Error in uploading xml report. Check your php settings (upload_max_filesize)');
+  }
+
   // parse xml file
+  $validator = new XmlValidator();
+  if (!$validator->validate(implode('', file($this->xml_filename)), 'static/xsd/report.xsd')) {
+        echo "<br>";
+  	die('xml report is broken');
+  }
+
+
   $doc = new DOMDocument();
   $doc->load($this->xml_filename);
   

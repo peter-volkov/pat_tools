@@ -1,0 +1,54 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="website_info">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="server_environment">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="script_filename"/>
+              <xs:element type="xs:string" name="document_root"/>
+              <xs:element type="xs:string" name="http_host"/>
+              <xs:element type="xs:string" name="admin_email"/>
+              <xs:element type="xs:string" name="time"/>
+              <xs:element type="xs:string" name="server_addr"/>
+              <xs:element type="xs:string" name="software"/>
+              <xs:element type="xs:string" name="server_gateway"/>
+              <xs:element type="xs:string" name="server_signature"/>
+              <xs:element type="xs:string" name="server_hostname"/>
+              <xs:element type="xs:string" name="platform_name"/>
+              <xs:element type="xs:string" name="server_architecture"/>
+              <xs:element type="xs:string" name="username"/>
+              <xs:element type="xs:string" name="path"/>
+              <xs:element type="xs:string" name="phpinfo"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="files">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="file" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="path"/>
+                    <xs:element type="xs:integer" name="size"/>
+                    <xs:element type="xs:integer" name="ctime"/>
+                    <xs:element type="xs:integer" name="mtime"/>
+                    <xs:element type="xs:integer" name="owner"/>
+                    <xs:element type="xs:integer" name="access"/>
+                    <xs:element type="xs:string" name="crc32b"/>
+                    <xs:element type="xs:string" name="crc32"/>
+                    <xs:element type="xs:string" name="md5"/>
+                    <xs:element type="xs:string" name="md2"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="detected" use="optional"/>
+                  <xs:attribute type="xs:string" name="snippet" use="optional"/>
+                  <xs:attribute type="xs:integer" name="pos" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
