@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="files">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="file" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="path"/>
+              <xs:element type="xs:integer" name="size"/>
+              <xs:element type="xs:integer" name="crc32b"/>
+              <xs:element type="xs:integer" name="crc32"/>
+              <xs:element type="xs:string" name="md5"/>
+              <xs:element type="xs:string" name="md2"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
