@@ -61,58 +61,23 @@ if (isset($_POST['a'])) {
    $displayed = array();
 
    // critical only
-   $row = new Template("static/templates/analyzer_table_row_crit.tpl");
-   foreach ($report_files as $item) {
-        if ($item['detected'] == 'c') {
-           $row->prepare();
-           $row->set('name', $item['path']);
-           $row->set('snippet', $item['snippet']);
-           $row->set('pos', $item['pos']);
-           $row->set('size', $item['size']);
-           $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
-           $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
-           $row->set('evenodd', $i % 2);
-	   $table_crit .= $row->get();
-
-	   $i++;
-
-           $displayed[] = $item['crc32'];
-        } 
-   }
-
-   // warnings
-   $row = new Template("static/templates/analyzer_table_row_warn.tpl");
-   foreach ($report_files as $item) {
-        if (($item['detected'] == 'w') && (!in_array($item['crc32'], $displayed))) {
-           $row->prepare();
-           $row->set('name', $item['path']);
-           $row->set('size', $item['size']);
-           $row->set('snippet', $item['snippet']);
-           $row->set('pos', $item['pos']);
-           $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
-           $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
-           $row->set('evenodd', $i % 2);
-	   $table_warn .= $row->get();
-
-           $displayed[] = $item['crc32'];
-	   $i++;
-        } 
-   }
-
-   // others
    $row = new Template("static/templates/analyzer_table_row.tpl");
    foreach ($report_files as $item) {
-        if (!in_array($item['crc32'], $displayed)) {
            $row->prepare();
            $row->set('name', $item['path']);
-           $row->set('size', $item['size']);
+           $row->set('snippet', $item['snippet']);
+           $row->set('pos', $item['pos']);
+           $row->set('size', $item['size'] > 0 ? $item['size'] : '[Folder]');
            $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
            $row->set('evenodd', $i % 2);
-	   $table .= $row->get();
+           $row->set('flagged', $item['detected']);
+	   $table_content .= $row->get();
 
 	   $i++;
-        } 
+
+           $displayed[] = $item['crc32'];
+
    }
 
    $server_info = $analyzer->get_server_info();
@@ -126,9 +91,7 @@ if (isset($_POST['a'])) {
       $env .= $row->get();
    }
 
-   $templ->set('table_content_crit', $table_crit);
-   $templ->set('table_content_warn', $table_warn);
-   $templ->set('table_content', $table);
+   $templ->set('table_content', $table_content);
    $templ->set('env_content', $env);
 
    $content = $templ->get();

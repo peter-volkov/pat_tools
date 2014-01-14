@@ -6,28 +6,15 @@
 
 <div class="restable">
 
-<div class="critical">
-<h2>Critical</h2>
-  <table cellspacing=0 cellpadding=2 border=0>
-  <tr align=left><th>Filename</th><th>Size</th><th>Created</th><th>Modified</th><th>Actions</th></tr>
-  @@table_content_crit@@
-  </table>
-</div>
-
-
-<div class="warning">
-<h2>Warning</h2>
-  <table cellspacing=0 cellpadding=2 border=0>
-  <tr align=left><th>Filename</th><th>Size</th><th>Created</th><th>Modified</th><th>Actions</th></tr>
-  @@table_content_warn@@
-  </table>
-</div>
-
-<div class="other">
-<h2>Others</h2>
-  <table cellspacing=0 cellpadding=2 border=0>
-  <tr align=left><th>Filename</th><th>Size</th><th>Created</th><th>Modified</th><th>Actions</th></tr>
+<div>
+<h2>File List</h2>
+  <table id="report_table" cellspacing=0 cellpadding=2 border=0>
+<thead>
+  <tr align=left><th>Flag</th><th>Filename</th><th>Size</th><th>Created</th><th>Modified</th><th>Actions</th></tr>
+</thead>
+<tbody>
   @@table_content@@
+</tbody>
   </table>
 </div>
 
@@ -50,6 +37,13 @@
 
 
 
+<style type="text/css" title="currentStyle">
+	@import "static/media/css/demo_page.css";
+	@import "static/media/css/jquery.dataTables.css";
+</style>
+<script type="text/javascript" language="javascript" src="static/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="static/js/jquery.dataTables.js"></script>
+
 <script language="javascript">
  var content = '';
 
@@ -70,4 +64,12 @@
     add_instruction('<delete>' + name + '</delete>');
     return false;
  }
+
+$(document).ready(function(){
+    $('#report_table').dataTable({
+       "aLengthMenu": [[100 , 500, -1], [100, 500, "All"]],
+       "iDisplayLength": 100
+     } );
+});
+
 </script>

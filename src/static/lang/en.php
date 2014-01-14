@@ -8,5 +8,5 @@ define('PS_CRC', 'CRC');
 define('PS_FILENAME_CRC', 'Filename + Size');
 define('PS_FILENAME', 'Filename');
 
-define('PS_SCRIPT_HEADER', 'Analyzer v0.3');
+define('PS_SCRIPT_HEADER', 'Analyzer v0.4');
 define('PS_GO_TO_RECIPE', 'Go to recipe form');
