@@ -6,6 +6,8 @@ class Archiver
     private $filename = "";
     private $mode = "";
     private $archive = NULL;
+    private $sys_folder = "";
+
     
 	public function __construct($filename, $mode="r")
 	{
@@ -16,7 +18,7 @@ class Archiver
         $archive = new ZipArchive;
 
         if ($this->mode === "r") {
-            $result = $archive->open($this->filename, ZipArchive::OPEN);           
+            $result = $archive->open($this->filename);           
             if (!$result) die("Archive opening error");
         } else if ($this->mode === "w" || $this->mode === "a") {
             $result = $archive->open($this->filename, ZipArchive::CREATE);
@@ -26,6 +28,7 @@ class Archiver
         }
  
         $this->archive = $archive;
+        $this->sys_folder = sys_get_temp_dir();
 		
 	}
 
@@ -73,6 +76,11 @@ class Archiver
 
     public function close() {
         $this->archive->close();  
+    }
+
+    public function extract_files() {
+        $this->archive->extractTo($this->sys_folder);
+        return $this->sys_folder;
     }
     
 }

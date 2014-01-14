@@ -8,7 +8,7 @@
 
 
 	<div class="header">
-	  <h1>Analyzer v0.3</h1>
+	  <h1><?php echo PS_SCRIPT_HEADER ?></h1>
 	</div>
 
 

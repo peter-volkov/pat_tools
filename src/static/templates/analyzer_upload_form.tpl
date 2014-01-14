@@ -1,16 +1,16 @@
 <form name="uploadForm"  method="post" encType="multipart/form-data">
 <input type="hidden" name="a" value="show">
-<div class="upload_file">Upload XML report: <input type="file" size="32" name="report"></div>
-<div class="">Upload XML Whitelist1: <input type="file" size="32" name="wl1"></div>
-<div class="">Upload XML Whitelist2: <input type="file" size="32" name="wl2"></div>
-<div class="">Upload XML Whitelist3: <input type="file" size="32" name="wl3"></div>
-<div class="">Upload XML Whitelist4: <input type="file" size="32" name="wl4"></div>
-<div class="">Upload XML Whitelist5: <input type="file" size="32" name="wl5"></div>
+<div class="upload_file">{PS_UPLOAD_XML_REPORT}: <input type="file" size="32" name="report"></div>
+<div class="">{PS_UPLOAD_XML_WHITELIST}1: <input type="file" size="32" name="wl1"></div>
+<div class="">{PS_UPLOAD_XML_WHITELIST}2: <input type="file" size="32" name="wl2"></div>
+<div class="">{PS_UPLOAD_XML_WHITELIST}3: <input type="file" size="32" name="wl3"></div>
+<div class="">{PS_UPLOAD_XML_WHITELIST}4: <input type="file" size="32" name="wl4"></div>
+<div class="">{PS_UPLOAD_XML_WHITELIST}5: <input type="file" size="32" name="wl5"></div>
 <div class="filter_group">
-Whitelist by:  
-<input type="radio" name="filter" value="0" checked> CRC
-<input type="radio" name="filter" value="1"> Filename + Size
-<input type="radio" name="filter" value="2"> Filename
+{PS_WHITELIST_BY}:  
+<input type="radio" name="filter" value="0" checked> {PS_CRC}
+<input type="radio" name="filter" value="1"> {PS_FILENAME_CRC}
+<input type="radio" name="filter" value="2"> {PS_FILENAME}
 </div>
-<input type="submit" value="Analyze" class="startButton">
+<input type="submit" value="{PS_ANALYZE_BUTTON}" class="startButton">
 </form>

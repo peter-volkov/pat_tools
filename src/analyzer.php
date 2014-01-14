@@ -7,10 +7,13 @@
 
 define('MAX_SUPPORTED_WLFILES', 5);
 
+require_once("static/lang/en.php");
+
 require_once("classes/Utils.inc.php");
 require_once("classes/Template.inc.php");
 require_once("classes/View.inc.php");
 require_once("classes/Analyzer.inc.php");
+require_once("classes/Archiver.inc.php");
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -20,6 +23,20 @@ if (isset($_POST['a'])) {
    $type = (int)$_POST['filter'];
 
    $report = Utils::get_uploaded_file("report");
+
+   if ($tmp_fh = fopen($report, "r")) {
+      $sig = fread($tmp_fh, 2);
+      if ($sig == 'PK') {
+         $archiver = new Archiver($report, "r");
+         $folder = $archiver->extract_files();
+         $report = $folder . '/' . 'scan_log.xml';
+         $archiver->close();
+      }
+
+      fclose($tmp_fh);
+   }
+
+
    for ($i = 1; $i <= MAX_SUPPORTED_WLFILES; $i++) {
      $wl = Utils::get_uploaded_file("wl" . $i);
 

@@ -2,7 +2,7 @@
 
 <h2>File List</h2>
 
-<a href="#execu">Go to recipe form</a>
+<a href="#execu">{PS_GO_TO_RECIPE}</a>
 
 <div class="restable">
 

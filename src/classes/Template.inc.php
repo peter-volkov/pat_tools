@@ -10,6 +10,15 @@ class Template
 
 		$this->content = implode('', file($this->_name));
 		$this->orig = $this->content;
+
+		if (preg_match_all("/\{(PS_.+?)\}/smiu", $this->content, $entries, PREG_SET_ORDER))
+		{
+			for ($i = 0; $i < sizeof($entries); $i++)
+			{
+                             $this->content = str_replace('{' . $entries[$i][1] . '}', constant($entries[$i][1]), $this->content);
+			}
+		}
+
 	}
 
 	public function get()
