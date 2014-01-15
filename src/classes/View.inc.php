@@ -32,7 +32,7 @@ class View
 		$this->_template = $this->_path . $template;
 		if (!file_exists($this->_template)) die("Template " . $this->_template . " doesn't exist.");
 
-		ob_start();         
+		ob_start();          
 		include($this->_template);
 		echo ($strip) ? $this->_strip(ob_get_clean()) : ob_get_clean();
 	}
