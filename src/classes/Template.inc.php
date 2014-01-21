@@ -6,7 +6,7 @@ class Template
 	public function __construct($name = '')
 	{
         $this->_name = $name;
-		if (!file_exists($this->_name)) die("Template " . $this->_template . " doesn't exist.");
+		if (!file_exists($this->_name)) die(sprintf(PS_ERR_TEMPLATE_DOESNT_EXISTS, $this->_template));
 
 		$this->content = implode('', file($this->_name));
 		$this->orig = $this->content;

@@ -30,7 +30,7 @@ class View
 	public function display($template, $strip = true)
 	{
 		$this->_template = $this->_path . $template;
-		if (!file_exists($this->_template)) die("Template " . $this->_template . " doesn't exist.");
+		if (!file_exists($this->_template)) die(sprintf(PS_ERR_TEMPLATE_DOESNT_EXISTS, $this->_template));
 
 		ob_start();          
 		include($this->_template);

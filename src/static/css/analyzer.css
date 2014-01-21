@@ -83,3 +83,10 @@ h2 {
   color: #606060;
 }
 
+.snippet
+{
+  width: 700px;
+  color: red;
+  font-size: 11px; 
+  overflow:auto;
+}

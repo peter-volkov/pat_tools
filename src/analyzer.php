@@ -72,6 +72,7 @@ if (isset($_POST['a'])) {
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
            $row->set('evenodd', $i % 2);
            $row->set('flagged', $item['detected']);
+           $row->set('uid', md5($item['path']));
 	   $table_content .= $row->get();
 
 	   $i++;

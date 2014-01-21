@@ -19,12 +19,12 @@ class Archiver
 
         if ($this->mode === "r") {
             $result = $archive->open($this->filename);           
-            if (!$result) die("Archive opening error");
+            if (!$result) die(PS_ERR_ARCHIVE_OPENING);
         } else if ($this->mode === "w" || $this->mode === "a") {
             $result = $archive->open($this->filename, ZipArchive::CREATE);
-            if (!$result) die("Archive creation/write error");
+            if (!$result) die(PS_ERR_ARCHIVE_CREATION);
         } else { 
-            die("Wrong archive mode. Available: r,w,a");
+            die(PS_ERR_WRONG_ARCHIVE_MODE);
         }
  
         $this->archive = $archive;
@@ -33,7 +33,7 @@ class Archiver
 	}
 
     public function add_file($filename, $target_filename=NULL) {         
-        if ($this->mode === "r") die("Write error: archive was opened for reading.");
+        if ($this->mode === "r") die(PS_ERR_ARCHIVE_WRITE_INCORRECT_MODE);
         if (!$target_filename) {
             $this->archive->addFile($filename);
         } else {

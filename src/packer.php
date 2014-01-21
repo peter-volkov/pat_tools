@@ -1,15 +1,19 @@
 <?php
 
 	if (php_sapi_name() != 'cli') {
-	   echo $argv[0] . " could be launched in php-cli mode, from command line.";
+	   echo sprintf(PS_ERR_SCRIPT_WRONG_LAUNCH_MODE, $argv[0]);
 	   die(-1);
 	}
 
 
 	if ($argc < 2) { 
-	   echo "Usage: " . $argv[0] . " <folder> <archive_name>\n";
-	   echo "\n";
-	   echo "e.g. " . $argv[0] . " /home/www/mysite.com/php_antimalware_tool /home/www/mysite.com/pat.zip\n";
+	   $help =<<<HELP
+Usage: %s <folder> <archive_name>
+	   
+e.g. %s /home/www/mysite.com/php_antimalware_tool /home/www/mysite.com/pat.zip
+HELP;
+
+           echo sprintf($help, $argv[0], $argv[0]);
 
 	   die(-2);
 	}

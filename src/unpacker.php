@@ -4,7 +4,7 @@
 		$archive_filename = 'pat.zip';
 		$archive = new ZipArchive;
 		$result = $archive->open($archive_filename);           
-		if (!$result) die("Archive opening error");
+		if (!$result) die(PS_ERR_UNPACK_ARCHIVE);
 		$archive->extractTo('php_antimalware_tool');
 		$archive->close();
 		unlink($archive_filename);

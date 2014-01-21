@@ -53,14 +53,14 @@ function parse_xml() {
   }
 
   if (!filesize($this->xml_filename)) {
-     die('Error in uploading xml report. Check your php settings (upload_max_filesize)');
+     die(PS_ERR_UPLOADING_XML);
   }
 
   // parse xml file
   $validator = new XmlValidator();
   if (!$validator->validate(implode('', file($this->xml_filename)), 'static/xsd/report.xsd')) {
         echo "<br>";
-  	die('xml report is broken');
+  	die('PS_ERR_BROKEN_XML');
   }
 
 
@@ -103,7 +103,7 @@ private function parse_xml_filelist($doc) {
            $f['detected'] = $file_info->getAttribute('detected');
            $f['snippet'] = $file_info->getAttribute('snippet');
 
-           $f['snippet'] = str_replace('@_MARKER_@', '<b><font color=#FF00FF>|</font></b>', $f['snippet']);
+           $f['snippet'] = str_replace('@_MARKER_@', '<b><span style="color:blue">|</span></b>', $f['snippet']);
 
            $f['pos'] = $file_info->getAttribute('pos');
         }
