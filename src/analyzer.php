@@ -7,8 +7,7 @@
 
 define('MAX_SUPPORTED_WLFILES', 5);
 
-require_once("static/lang/en.php");
-
+require_once("classes/Localization.php");
 require_once("classes/Utils.inc.php");
 require_once("classes/Template.inc.php");
 require_once("classes/View.inc.php");

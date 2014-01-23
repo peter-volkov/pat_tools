@@ -1,4 +1,5 @@
 <?php
+   require_once("classes/Localization.php");
 
 	if (php_sapi_name() != 'cli') {
 	   echo sprintf(PS_ERR_SCRIPT_WRONG_LAUNCH_MODE, $argv[0]);

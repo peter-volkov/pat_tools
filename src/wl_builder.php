@@ -5,6 +5,7 @@
 // Greg Zemskov, ai@revisium.com
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+require_once("classes/Localization.php");
 require_once('classes/WhileListBuilder.inc.php');
 
 if (php_sapi_name() != 'cli') {
