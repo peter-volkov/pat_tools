@@ -32,7 +32,7 @@ class FileInfo
 			   $this->md2 = 0;
 			}
 
-		} else die("no such file.");
+		} else die(PS_ERR_NO_SUCH_FILE);
 	}
 
 	public function getXMLNode()

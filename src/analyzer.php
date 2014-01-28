@@ -7,8 +7,7 @@
 
 define('MAX_SUPPORTED_WLFILES', 5);
 
-require_once("static/lang/en.php");
-
+require_once("classes/Localization.php");
 require_once("classes/Utils.inc.php");
 require_once("classes/Template.inc.php");
 require_once("classes/View.inc.php");
@@ -72,6 +71,7 @@ if (isset($_POST['a'])) {
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
            $row->set('evenodd', $i % 2);
            $row->set('flagged', $item['detected']);
+           $row->set('uid', md5($item['path']));
 	   $table_content .= $row->get();
 
 	   $i++;

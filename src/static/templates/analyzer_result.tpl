@@ -10,7 +10,7 @@
 <h2>File List</h2>
   <table id="report_table" cellspacing=0 cellpadding=2 border=0>
 <thead>
-  <tr align=left><th>Flag</th><th>Filename</th><th>Size</th><th>Created</th><th>Modified</th><th>Actions</th></tr>
+  <tr align=left><th>{PS_TH_FLAG}</th><th>{PS_TH_FILENAME}</th><th>{PS_TH_SIZE}</th><th>{PS_TH_CREATED}</th><th>{PS_TH_MODIFIED}</th><th>{PS_TH_ACTION}</th></tr>
 </thead>
 <tbody>
   @@table_content@@
@@ -18,17 +18,18 @@
   </table>
 </div>
 
-<h2>Recipe</2>
+<h2>{PS_RECIPE_RESULT_HEADER}</2>
 <a name="execu"></a>
 <div class="">
 <form name="executor">
-<textarea cols=60 rows=20 name="instruction"></textarea>
+<textarea cols=60 id="instr" rows=20 name="instruction"></textarea>
+</form>
 </div>
 
-<h2>Environment</h2>
+<h2>{PS_ENVIRONMENT_HEADER}</h2>
 <div class="envtable">
 <table cellspacing=0 cellpadding=2 border=0>
-<tr align=left><th>Variable</th><th>Value</th></tr>
+<tr align=left><th>{PS_TH_VARIABLE}</th><th>{PS_TH_VALUE}</th></tr>
 @@env_content@@
 </tr>
 </div>
@@ -41,27 +42,70 @@
 	@import "static/media/css/demo_page.css";
 	@import "static/media/css/jquery.dataTables.css";
 </style>
+
+
+<script type="text/javascript" language="javascript" src="static/js/HashTable.js"></script>
 <script type="text/javascript" language="javascript" src="static/js/jquery.js"></script>
 <script type="text/javascript" language="javascript" src="static/js/jquery.dataTables.js"></script>
 
 <script language="javascript">
- var content = '';
+ var deleted = new HashTable({});
+ var quarantened = new HashTable({}); 
 
- function add_instruction(str) {
+ function renderXml() {
     var f = document.forms.executor.instruction;
 
-    content += "\n" + str;
+    var content = '<?xml version="1.0"?>';
 
-    f.value = '<?xml version="1.0"?>' + content;
+    deleted.each(function(key, value) {
+        content += '<delete>' + value + '</delete>' + "\n";
+    });
+
+    quarantened.each(function(key, value) {
+        content += '<quarantine>' + value + '</quarantine>' + "\n";
+    });
+
+    f.value =  content;
  }
 
- function add_quarantine(name) {
-    add_instruction('<quarantine>' + name + '</quarantine>');
+ function triggerLink(id, state) {
+    var obj = document.getElementById(id);
+    if (obj) {
+       if (state) {
+          obj.style.fontWeight = 'bold';
+          obj.style.textDecoration = 'line-through';
+       } else {
+          obj.style.fontWeight = 'normal';
+          obj.style.textDecoration = '';
+       }
+    }
+ }
+
+ function add_quarantine(uid, name) {
+    if (quarantened.hasItem(uid))  {
+       triggerLink('q_' + uid, false);
+       quarantened.removeItem(uid);
+    } else {
+       triggerLink('q_' + uid, true);
+       quarantened.setItem(uid, name);
+    }
+
+    renderXml();
+
     return false;
  }
 
- function add_delete(name) {
-    add_instruction('<delete>' + name + '</delete>');
+ function add_delete(uid, name) {
+    if (deleted.hasItem(uid))  {
+       triggerLink('d_' + uid, false);
+       deleted.removeItem(uid);
+    } else {
+       triggerLink('d_' + uid, true);
+       deleted.setItem(uid, name);
+    }
+
+    renderXml();
+
     return false;
  }
 
