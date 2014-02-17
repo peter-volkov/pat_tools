@@ -33,12 +33,10 @@
                     <xs:element type="xs:integer" name="size"/>
                     <xs:element type="xs:integer" name="ctime"/>
                     <xs:element type="xs:integer" name="mtime"/>
-                    <xs:element type="xs:integer" name="owner"/>
+                    <xs:element type="xs:string" name="owner"/>
+                    <xs:element type="xs:string" name="group"/>
                     <xs:element type="xs:integer" name="access"/>
-                    <xs:element type="xs:string" name="crc32b"/>
-                    <xs:element type="xs:string" name="crc32"/>
                     <xs:element type="xs:string" name="md5"/>
-                    <xs:element type="xs:string" name="md2"/>
                   </xs:sequence>
                   <xs:attribute type="xs:string" name="detected" use="optional"/>
                   <xs:attribute type="xs:string" name="snippet" use="optional"/>

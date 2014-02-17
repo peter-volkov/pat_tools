@@ -8,7 +8,7 @@ define('PS_CRC', 'CRC');
 define('PS_FILENAME_CRC', 'Filename + Size');
 define('PS_FILENAME', 'Filename');
 
-define('PS_SCRIPT_HEADER', 'Analyzer v0.5');
+define('PS_SCRIPT_HEADER', 'Analyzer v0.6');
 define('PS_GO_TO_RECIPE', 'Go to recipe form');
 define('PS_RECIPE_RESULT_HEADER', 'Result XML Recipe');
 define('PS_ENVIRONMENT_HEADER', 'Environment Variables');
@@ -38,3 +38,5 @@ define('PS_TH_MODIFIED', 'Modified');
 define('PS_TH_ACTION', 'Action');
 define('PS_TH_VARIABLE', 'Variable');
 define('PS_TH_VALUE', 'Value');
+define('PS_TH_OWNER', 'Owner');
+define('PS_TH_GROUP', 'Group');
