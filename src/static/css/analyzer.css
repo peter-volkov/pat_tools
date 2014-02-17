@@ -90,3 +90,21 @@ h2 {
   font-size: 11px; 
   overflow:auto;
 }
+
+.md5
+{
+  color: #E0E0E0;
+  font-size: 11px; 
+}
+
+.ico_critical {
+  font-size: 27px;
+  font-family: Arial;
+  color: red;
+}
+
+.ico_warning {
+  font-size: 18px;
+  font-family: Arial;
+  color: orange;
+}

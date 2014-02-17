@@ -10,7 +10,7 @@
 <h2>File List</h2>
   <table id="report_table" cellspacing=0 cellpadding=2 border=0>
 <thead>
-  <tr align=left><th>{PS_TH_FLAG}</th><th>{PS_TH_FILENAME}</th><th>{PS_TH_SIZE}</th><th>{PS_TH_CREATED}</th><th>{PS_TH_MODIFIED}</th><th>{PS_TH_ACTION}</th></tr>
+  <tr align=left><th>{PS_TH_FLAG}</th><th>{PS_TH_FILENAME}</th><th>{PS_TH_SIZE}</th><th>{PS_TH_CREATED}</th><th>{PS_TH_MODIFIED}</th><th>{PS_TH_OWNER}</th><th>{PS_TH_GROUP}</th><th>{PS_TH_ACTION}</th></tr>
 </thead>
 <tbody>
   @@table_content@@

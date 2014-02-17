@@ -59,7 +59,6 @@ if (isset($_POST['a'])) {
 
    $displayed = array();
 
-   // critical only
    $row = new Template("static/templates/analyzer_table_row.tpl");
    foreach ($report_files as $item) {
            $row->prepare();
@@ -70,8 +69,18 @@ if (isset($_POST['a'])) {
            $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
            $row->set('evenodd', $i % 2);
-           $row->set('flagged', $item['detected']);
+
+	   $flag = '';
+           switch ($item['detected']) {
+               case 'c': $flag = '<span class="ico_critical">&#9763;</span>'; break;
+               case 'w': $flag = '<span class="ico_warning">(!)</span>'; break;
+           }
+
+           $row->set('flagged', $flag);
            $row->set('uid', md5($item['path']));
+           $row->set('group', $item['group'] != '' ? $item['group'] : '&mdash;');
+           $row->set('owner', $item['owner'] != '' ? $item['owner'] : '&mdash;');
+           $row->set('md5', $item['md5']);
 	   $table_content .= $row->get();
 
 	   $i++;

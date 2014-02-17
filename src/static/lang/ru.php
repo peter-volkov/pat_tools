@@ -8,7 +8,7 @@ define('PS_CRC', 'CRC');
 define('PS_FILENAME_CRC', 'имени файла + размеру');
 define('PS_FILENAME', 'имени файла');
 
-define('PS_SCRIPT_HEADER', 'Analyzer v0.5');
+define('PS_SCRIPT_HEADER', 'Анализатор v0.6');
 define('PS_GO_TO_RECIPE', 'Перейти к форме предписаний');
 define('PS_RECIPE_RESULT_HEADER', 'XML предписание');
 define('PS_ENVIRONMENT_HEADER', 'Переменные окружения');
@@ -38,3 +38,5 @@ define('PS_TH_MODIFIED', 'Изменен');
 define('PS_TH_ACTION', 'Действие');
 define('PS_TH_VARIABLE', 'Переменная');
 define('PS_TH_VALUE', 'Значение');
+define('PS_TH_OWNER', 'Владелец');
+define('PS_TH_GROUP', 'Группа');

@@ -60,7 +60,7 @@ function parse_xml() {
   $validator = new XmlValidator();
   if (!$validator->validate(implode('', file($this->xml_filename)), 'static/xsd/report.xsd')) {
         echo "<br>";
-  	die('PS_ERR_BROKEN_XML');
+  	die(PS_ERR_BROKEN_XML);
   }
 
 
@@ -88,7 +88,7 @@ private function parse_xml_filelist($doc) {
 
      switch ($this->type) {
         case 0: 
-          $key = $f['crc32b'];
+          $key = $f['md5'];
           break;
         case 1: 
           $key = $f['path'] . $f['size'];
@@ -111,6 +111,7 @@ private function parse_xml_filelist($doc) {
         $files[] = $f;
      }
   }
+
 
   return $files;
 }
@@ -155,7 +156,7 @@ private function parse_wl($doc) {
 
      switch ($this->type) {
         case 0: 
-          $key = $f['crc32b'];
+          $key = $f['md5'];
           break;
         case 1: 
           $key = $f['path'] . $f['size'];
