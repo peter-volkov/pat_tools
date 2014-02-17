@@ -1,13 +1,13 @@
 
 
-<h2>File List</h2>
-
-<a href="#execu">{PS_GO_TO_RECIPE}</a>
 
 <div class="restable">
 
 <div>
 <h2>File List</h2>
+<a href="#execu">{PS_GO_TO_RECIPE}</a>
+
+
   <table id="report_table" cellspacing=0 cellpadding=2 border=0>
 <thead>
   <tr align=left><th>{PS_TH_FLAG}</th><th>{PS_TH_FILENAME}</th><th>{PS_TH_SIZE}</th><th>{PS_TH_CREATED}</th><th>{PS_TH_MODIFIED}</th><th>{PS_TH_OWNER}</th><th>{PS_TH_GROUP}</th><th>{PS_TH_ACTION}</th></tr>
@@ -55,17 +55,17 @@
  function renderXml() {
     var f = document.forms.executor.instruction;
 
-    var content = '<?xml version="1.0"?>';
-
-    deleted.each(function(key, value) {
-        content += '<delete>' + value + '</delete>' + "\n";
-    });
+    var content = '<?xml version="1.0"?><recipe>';
 
     quarantened.each(function(key, value) {
-        content += '<quarantine>' + value + '</quarantine>' + "\n";
+        content += '<quarantine>' + value + '</quarantine>';
     });
 
-    f.value =  content;
+    deleted.each(function(key, value) {
+        content += '<delete>' + value + '</delete>';
+    });
+
+    f.value = content + "</recipe>";
  }
 
  function triggerLink(id, state) {
