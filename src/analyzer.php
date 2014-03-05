@@ -65,7 +65,7 @@ if (isset($_POST['a'])) {
            $row->set('name', $item['path']);
            $row->set('snippet', $item['snippet']);
            $row->set('pos', $item['pos']);
-           $row->set('size', $item['size'] > 0 ? $item['size'] : '[Folder]');
+           $row->set('size', $item['size'] > -1 ? $item['size'] : '[Folder]');
            $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
            $row->set('evenodd', $i % 2);
