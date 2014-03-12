@@ -3,7 +3,7 @@
 class FileInfo {
     public function __construct($file_path) {
 
-        $this->web_root_dir = $_SERVER['DOCUMENT_ROOT'] ;
+        $this->web_root_dir = $_SERVER['DOCUMENT_ROOT'];
         $this->getInfoByName($file_path);
     }
 
@@ -11,16 +11,31 @@ class FileInfo {
 
         $this->MAX_FILE_SIZE_FOR_HASHING = 1024 * 1024;
  
+        $this->absolute_name = $file_path;
+        $this->name = str_replace($this->web_root_dir, '.', $file_path);
+        $this->ctime = 0;
+        $this->mtime = 0;            
+        $this->owner = '-';
+        $this->crc32 = 0;
+        $this->crc32b = 0;
+        $this->group = '-';
+        $this->access = 0;
+        $this->size = -1;
+        $this->md5 = 'None';
+        $this->md2 = 'None';
+
         if (file_exists($file_path)) {    
- 
-            $this->absolute_name = $file_path;
-            $this->name = str_replace($this->web_root_dir, '.', $file_path);;
             $this->ctime = filectime($file_path);
             $this->mtime = filemtime($file_path);            
-            $ownerInfo = posix_getpwuid(fileowner($file_path));
-            $this->owner = $ownerinfo['name'];
-            $groupInfo = posix_getgrgid(filegroup($file_path));
+
+            $owner = fileowner($file_path);
+            $ownerInfo = function_exists('posix_getpwuid') ? posix_getpwuid($owner) : array('name' => $owner);
+            $this->owner = $ownerInfo['name'];
+
+            $group = filegroup($file_path);
+            $groupInfo = function_exists('posix_getgrgid') ? posix_getgrgid($group) : array('name' => $group);
             $this->group = $groupInfo['name'];
+
             $this->access = substr(sprintf('%o', fileperms($file_path)), -4);
             
             if (is_file($file_path)) {
@@ -28,15 +43,16 @@ class FileInfo {
                
                 if ($this->size <= $this->MAX_FILE_SIZE_FOR_HASHING) {
                     $this->md5 = hash_file('md5', $file_path);                   
+                    $this->md2 = hash_file('md2', $file_path);                   
+                    $this->crc32 = hash_file('crc32', $file_path);                   
+                    $this->crc32b = hash_file('crc32b', $file_path);                   
                 }  else {
-                    $this->md5 = 0;
+                    $this->md5 = 'None';
                 }
                  
-            } else {
-                $this->size = 0;
-                $this->md5 = 0;
             }
-       	} else die(PS_ERR_NO_SUCH_FILE);
+       	}  
+
 
         return true;
     }
@@ -51,7 +67,10 @@ class FileInfo {
         $fileinfo_node->appendChild($dom->createElement("owner", $this->owner));
         $fileinfo_node->appendChild($dom->createElement("group", $this->group));
         $fileinfo_node->appendChild($dom->createElement("access", $this->access));
+        $fileinfo_node->appendChild($dom->createElement("crc32", $this->crc32));
+        $fileinfo_node->appendChild($dom->createElement("crc32b", $this->crc32b));
         $fileinfo_node->appendChild($dom->createElement("md5", $this->md5));
+        $fileinfo_node->appendChild($dom->createElement("md2", $this->md2));
         $dom->appendChild($fileinfo_node);
         return $dom->getElementsByTagName("file")->item(0);
     }
