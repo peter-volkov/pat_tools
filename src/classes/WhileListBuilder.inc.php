@@ -20,7 +20,7 @@ class WhiteListBuilder
        $this->recursive_scan('.', 1);
        chdir('..');
 
-       $exclude_array = array('ctime', 'mtime', 'owner', 'access');
+       $exclude_array = array('ctime', 'mtime', 'owner', 'access', 'group');
 
        foreach ($exclude_array as $item) {
           $els = $this->dom->getElementsByTagName($item);
@@ -49,9 +49,7 @@ class WhiteListBuilder
        		    $fileinfo = new FileInfo($file);
                     $fileinfo_node = $fileinfo->getXMLNode();
                     $new_node = $this->dom->importNode($fileinfo_node, true);
-
                     $this->dom->documentElement->appendChild($new_node);
-
                     echo $file . "\n";
 
 		}  
