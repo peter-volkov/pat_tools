@@ -5,7 +5,7 @@
 
     $zipModuleVersion = phpversion('zip');
     if (empty($zipModuleVersion)) {
-        die('PS_NO_ZIP_MODULE');
+        die(PS_NO_ZIP_MODULE);
     } 
 
     function unpack_pat() {
