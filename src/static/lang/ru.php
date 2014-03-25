@@ -4,11 +4,17 @@ define('PS_UPLOAD_XML_REPORT', 'Загрузить отчет');
 define('PS_UPLOAD_XML_WHITELIST', 'Выбрать whitelist');
 define('PS_ANALYZE_BUTTON', 'АНАЛИЗИРОВАТЬ!');
 define('PS_WHITELIST_BY', 'Фильтровать по');
+define('PS_COMPARE_BY', 'Сравнивать по');
 define('PS_CRC', 'CRC');
+define('PS_FILESIZE', 'по размеру');
 define('PS_FILENAME_CRC', 'имени файла + размеру');
 define('PS_FILENAME', 'имени файла');
 
-define('PS_SCRIPT_HEADER', 'Анализатор v0.6');
+define('PS_CHANGED_FILES', 'Измененные файлы');
+define('PS_ADDED_FILES', 'Новые файлы');
+define('PS_DELETED_FILES', 'Удаленные файлы');
+
+define('PS_SCRIPT_HEADER', 'Анализатор v0.7');
 define('PS_GO_TO_RECIPE', 'Перейти к форме предписаний');
 define('PS_RECIPE_RESULT_HEADER', 'XML предписание');
 define('PS_ENVIRONMENT_HEADER', 'Переменные окружения');
