@@ -66,6 +66,8 @@ if ($_POST['a'] == 'show') {
            $row->set('size', $item['size'] > -1 ? $item['size'] : '[Folder]');
            $row->set('created', date('d/m/Y H:i:s', $item['ctime']));
            $row->set('modified', date('d/m/Y H:i:s', $item['mtime']));
+           $row->set('ctime', $item['ctime']);
+           $row->set('mtime', $item['mtime']);
 
 	   $flag = '';
            switch (@$item['detected']) {
