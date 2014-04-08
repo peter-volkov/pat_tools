@@ -1,14 +1,19 @@
 <?php
 
+define('PS_TITLE_VIEW', 'Анализировать лог');
+define('PS_TITLE_COMPARE', 'Сравнить логи');
+define('PS_FILELIST', 'Список файлов');
 define('PS_UPLOAD_XML_REPORT', 'Загрузить отчет');
 define('PS_UPLOAD_XML_WHITELIST', 'Выбрать whitelist');
 define('PS_ANALYZE_BUTTON', 'АНАЛИЗИРОВАТЬ!');
 define('PS_WHITELIST_BY', 'Фильтровать по');
 define('PS_COMPARE_BY', 'Сравнивать по');
-define('PS_CRC', 'CRC');
 define('PS_FILESIZE', 'по размеру');
 define('PS_FILENAME_CRC', 'имени файла + размеру');
 define('PS_FILENAME', 'имени файла');
+define('PS_OWNER', 'владелецу');
+define('PS_CRC', 'хэшу');
+define('PS_MTIME', 'времени изменения');
 
 define('PS_CHANGED_FILES', 'Измененные файлы');
 define('PS_ADDED_FILES', 'Новые файлы');

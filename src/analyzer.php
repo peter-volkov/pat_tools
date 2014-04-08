@@ -54,6 +54,11 @@ if ($_POST['a'] == 'show') {
    $table_content = '';
 
    foreach ($report_files as $item) {
+           if (isset($item['snippet'])) {
+              $item['snippet'] = base64_decode($item['snippet']);
+              $item['snippet'] = preg_replace('|@_MARKER_@|', '<font color=blue>^</font>', $item['snippet']);
+           }  
+
            $row->prepare();
            $row->set('name', $item['path']);
            $row->set('snippet', @$item['snippet']);
@@ -100,10 +105,18 @@ if ($_POST['a'] == 'show') {
   } else 
      if (isset($_POST['a']) == 'compare') {
         $type = (int)$_POST['filter'];
-        if ($type) {
-           $compare_by = 'md5';
-        } else {
-           $compare_by = 'size';
+        switch ($type) {
+           case 1:
+             $compare_by = 'md5';
+             break; 
+           case 2:
+             $compare_by = 'owner';
+             break; 
+           case 3:
+             $compare_by = 'mtime';
+             break; 
+           default:
+             $compare_by = 'size';
         }
 
         $report1 = getReportFile('report1');
@@ -114,12 +127,17 @@ if ($_POST['a'] == 'show') {
         $templ = new Template("static/templates/comparator_result.tpl");
         $loop = array('m', 'd', 'a');
 
-        $row = new Template("static/templates/analyzer_table_row.tpl");
+        $row = new Template("static/templates/comparator_table_row.tpl");
 
         foreach($loop as $index) {
            $table_content = '';
+           if (!isset($diff[$index])) continue;
 
            foreach ($diff[$index] as $item) {
+                if (isset($item['snippet'])) {
+                   $item['snippet'] = base64_decode($item['snippet']);
+                   $item['snippet'] = preg_replace('|@_MARKER_@|', '<font color=blue>^</font>', $item['snippet']);
+                }  
 
                 $row->prepare();
                 $row->set('name', $item['path']);
@@ -146,6 +164,10 @@ if ($_POST['a'] == 'show') {
            $templ->set('table_content_' . $index, $table_content);
         }
 
+        foreach($loop as $index) {
+          $templ->set('table_content_' . $index, '');
+        }
+    
         $content = $templ->get();
      }
 } else  

@@ -4,7 +4,7 @@
 <div class="restable">
 
 <div>
-<h2>File List</h2>
+<h2>{PS_FILELIST}</h2>
 <a href="#execu">{PS_GO_TO_RECIPE}</a>
 
 
@@ -112,7 +112,7 @@
 $(document).ready(function(){
     $('#report_table').dataTable({
        "aLengthMenu": [[100 , 500, -1], [100, 500, "All"]],
-       "iDisplayLength": 100
+       "iDisplayLength": 500
      } );
 });
 

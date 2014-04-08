@@ -44,6 +44,13 @@ private function parse_xml_filelist($doc) {
      foreach ($file_info->childNodes as $file) {
         if ($file->nodeName == '#text') continue;
         $f[$file->nodeName] = $file->nodeValue;
+
+        if ($file_info->hasAttribute('detected')) {
+           $f['detected'] = $file_info->getAttribute('detected');
+           $f['snippet'] = $file_info->getAttribute('snippet');
+           $f['pos'] = $file_info->getAttribute('pos');
+        }
+
      }
 
      $files[$f['path']] = $f;
@@ -82,7 +89,6 @@ function getDiff() {
    }
 
    return $result;
-
 }   
 
  

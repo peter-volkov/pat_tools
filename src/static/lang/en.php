@@ -1,5 +1,8 @@
 <?php
 
+define('PS_TITLE_VIEW', 'Analyze Log');
+define('PS_TITLE_COMPARE', 'Compare Log');
+define('PS_FILELIST', 'File list');
 define('PS_UPLOAD_XML_REPORT', 'Upload XML Report');
 define('PS_UPLOAD_XML_WHITELIST', 'Upload XML Whitelist');
 define('PS_ANALYZE_BUTTON', 'ANALYZE');
@@ -9,6 +12,8 @@ define('PS_CRC', 'CRC');
 define('PS_FILESIZE', 'Filesize');
 define('PS_FILENAME_CRC', 'Filename + Size');
 define('PS_FILENAME', 'Filename');
+define('PS_OWNER', 'Owner');
+define('PS_MTIME', 'Modification Time');
 
 define('PS_CHANGED_FILES', 'Changed files');
 define('PS_ADDED_FILES', 'Added files');
