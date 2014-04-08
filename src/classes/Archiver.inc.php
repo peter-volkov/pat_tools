@@ -78,8 +78,10 @@ class Archiver
         $this->archive->close();  
     }
 
-    public function extract_files() {
-        $this->archive->extractTo($this->sys_folder);
+    public function extract_files($destination_dir=null) {
+        if (!$destination_dir)
+            $destination_dir = $this->sys_folder;
+        $this->archive->extractTo($destination_dir);
         return $this->sys_folder;
     }
     

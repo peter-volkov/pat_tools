@@ -1,5 +1,6 @@
 <?php
 require_once("XmlValidator.inc.php");
+require_once("Archiver.inc.php");
 
 class Analyzer
 {
@@ -42,19 +43,8 @@ function get_server_info() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 function parse_xml() { 
-  $doc = new DOMDocument();
 
-  if (count($this->wl_filenames) > 0) {
-     // parse whitelists
-     foreach ($this->wl_filenames as $wl_filename) {
-       $doc->load($wl_filename);
-       $this->parse_wl($doc);
-     }
-  }
 
-  if (!filesize($this->xml_filename)) {
-     die(PS_ERR_UPLOADING_XML);
-  }
 
   // parse xml file
   $validator = new XmlValidator();
@@ -63,16 +53,94 @@ function parse_xml() {
   	die(PS_ERR_BROKEN_XML);
   }
 
+  if (!filesize($this->xml_filename)) {
+     die(PS_ERR_UPLOADING_XML);
+  }
+
 
   $doc = new DOMDocument();
   $doc->load($this->xml_filename);
-  
+
+  $wl_doc = new DOMDocument();
+  if (count($this->wl_filenames) > 0) {
+     // parse whitelists
+     foreach ($this->wl_filenames as $wl_filename) {
+       $wl_doc->load($wl_filename);
+       $this->parse_wl($wl_doc);
+     }
+  }
+ 
+  $this->cms_versions = $this->parse_cms_versions($doc);
+  $this->load_whitelists($this->cms_versions);
   $this->report_file_list = $this->parse_xml_filelist($doc);
   $this->server_info = $this->parse_server_info($doc);
   
 }
 
+private function parse_cms_versions($doc) {
+    $cmsNodes = $doc->getElementsByTagName('cms');
+    $cmsVerions = Array();
+    foreach($cmsNodes as $cmsNode) {
+        $cmsVersion = array('name' => $cmsNode->getAttribute('name'), 'version' => $cmsNode->getAttribute('version'));
+        array_push($cmsVerions, $cmsVersion);
+    }
+    return $cmsVerions;
+}
 
+private function download_whitelist($url, $whitelistFilename) {
+
+    $packedWhitelistFilename = sprintf('%s.zip', $whitelistFilename);
+
+    file_put_contents($packedWhitelistFilename, fopen($url, 'rb'));
+
+    //if cannot be downloaded
+    if (!is_file($packedWhitelistFilename)) {        
+        return false;
+    }
+
+    $archiver = new Archiver($packedWhitelistFilename);
+    $archiver->extract_files('static/whitelists');
+
+    unlink($packedWhitelistFilename);
+            
+    //if something wrong with the archive
+    if (!is_file($whitelistFilename)) {
+        return false;
+    } 
+   
+    return true;
+}
+
+private function load_whitelists($cmsVersions) {
+
+    $wl_doc = new DOMDocument();
+
+    foreach($cmsVersions as $cmsVersion) {
+        $wlName = sprintf("%s-%s", $cmsVersion['name'], $cmsVersion['version']);
+
+        $url = sprintf('http://amtool.tk/downloads/whitelists/%s/%s.xml.zip', $cmsVersion['name'], $wlName);
+        
+        $whitelistFilename = sprintf('static/whitelists/%s.xml', $wlName);
+
+        
+        if (!is_file($whitelistFilename)) {
+             $is_downloaded = $this->download_whitelist($url, $whitelistFilename);
+             if (!$is_downloaded) {
+                 //wl is already downloaded
+                 break;
+             }
+        } 
+
+        $validator = new XmlValidator();
+        if ($validator->validate(implode('', file($whitelistFilename)), 'static/xsd/whitelist.xsd')) {             
+            $wl_doc->load($whitelistFilename);
+            $this->parse_wl($wl_doc);
+        } else {                
+            unlink($whitelistFilename);
+        }
+    }
+}
+ 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 private function parse_xml_filelist($doc) {
   $files = array();
@@ -102,9 +170,6 @@ private function parse_xml_filelist($doc) {
         if ($file_info->hasAttribute('detected')) {
            $f['detected'] = $file_info->getAttribute('detected');
            $f['snippet'] = $file_info->getAttribute('snippet');
-
-           $f['snippet'] = str_replace('@_MARKER_@', '<b><span style="color:blue">|</span></b>', $f['snippet']);
-
            $f['pos'] = $file_info->getAttribute('pos');
         }
         
