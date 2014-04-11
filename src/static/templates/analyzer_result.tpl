@@ -4,7 +4,7 @@
 <div class="restable">
 
 <div>
-<h2>File List</h2>
+<h2>{PS_FILELIST}</h2>
 <a href="#execu">{PS_GO_TO_RECIPE}</a>
 
 
@@ -112,8 +112,40 @@
 $(document).ready(function(){
     $('#report_table').dataTable({
        "aLengthMenu": [[100 , 500, -1], [100, 500, "All"]],
-       "iDisplayLength": 100
+       "iDisplayLength": 500,
+		"oLanguage": {
+			"sLengthMenu": "Отображать по _MENU_ записей",
+			"sZeroRecords": "Ничего не найдено",
+			"sInfo": "Отображается c _START_ по _END_ из _TOTAL_ файлов",
+			"sInfoEmpty": "Нет файлов",
+			"sInfoFiltered": "(всего записей _MAX_)",
+			"sSearch":       "Поиск:",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst": "Первая",
+				"sPrevious": "Предыдущая",
+				"sNext": "Следующая",
+				"sLast": "Последняя"
+			},
+			"oAria": {
+				"sSortAscending":  ": активировать для сортировки столбца по возрастанию",
+				"sSortDescending": ": активировать для сортировки столбцов по убыванию"			
+			}
+		},
+       "aoColumns": [
+                                     {"bSortable": true},
+                                     {"bSortable": true},
+                                     {"bSortable": true},
+                                     {"iDataSort": 8},
+                                     {"iDataSort": 9},
+                                     {"bSortable": true},
+                                     {"bSortable": true},
+                                     {"bSortable": false},
+                                     {"bVisible": false},
+                                     {"bVisible": false}
+                     ]
      } );
 });
+
 
 </script>
