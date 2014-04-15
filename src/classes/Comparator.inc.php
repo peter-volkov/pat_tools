@@ -49,6 +49,7 @@ private function parse_xml_filelist($doc) {
            $f['detected'] = $file_info->getAttribute('detected');
            $f['snippet'] = $file_info->getAttribute('snippet');
            $f['pos'] = $file_info->getAttribute('pos');
+           $f['sigid'] = $file_info->getAttribute('sigid');
         }
 
      }
