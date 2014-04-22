@@ -53,7 +53,7 @@
             </div>
             <button class="filter__filter-button filter__filter-button_theme_action">Filter</button>
         </div>
-        <table class="table">
+        <table class="table" id="filesTable">
             <thead class="table__head">
                 <th class="table__head-item table__head-item_type_flag"><span class="table__column-title">{PS_TH_FLAG}</span>
                 </th>
@@ -77,17 +77,21 @@
 
             </tbody>
         </table>
+
         <div class="body__content body__content_display_block">
             <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <form class="form">
+                <form class="form" >
                 <h3 class="form__head">{PS_RECIPE_RESULT_HEADER}</h3>
                 <div class="form__textarea-wrapper">
-                    <textarea class="form__textarea" id="instr"></textarea>
+                    <textarea class="form__textarea" id="recipeTextarea"></textarea>
                 </div>
+
+                 </form>
+
                 <div class="form__buttonarea form__buttonarea_align_right">
-                    <button class="button button_theme_action i-bem" data-bem="{&quot;button&quot;:{}}" role="button">Copy to Clipboard</button>
+                    <button class="button button_theme_action i-bem" data-bem="{&quot;button&quot;:{}}"  id='copyRecipeButton' role="button">Copy to Clipboard</button>
                 </div>
-                </form>
+               
         </div>
         <div class="footer">
             <a class="b-link footer__item" href="#">{PS_ANALYZER_FOOTER_CONTACTS}</a>
@@ -97,16 +101,43 @@
 
         </div>
     </div>
+
     <script type="text/javascript" language="javascript" src="static/js/HashTable.js"></script>
     <script type="text/javascript" language="javascript" src="static/js/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="static/js/jquery.dataTables.js"></script>
     <script type="text/javascript" language="javascript" src="static/js/quarantine.js"></script>
+
+    <script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.3.5/ZeroClipboard.min.js"></script>
+
+    <script type="text/javascript">
+
+
+
+        var client = new ZeroClipboard( document.getElementById("copyRecipeButton"), {
+          moviePath: "//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.3.5/ZeroClipboard.swf"
+        } );
+
+        client.on( "load", function(client) {
+          // alert( "movie is loaded" );
+
+          client.on( 'dataRequested', function (client, args) {
+              client.setText(document.getElementById('recipeTextarea').value);
+          });
+
+        } );
+
+    </script>
+
+    
+
+
+
     <script src="static/js/analyzer.table.new.js"></script>
 
     <script language="javascript">
 
     $(document).ready(function(){
-        $('#report_table').dataTable({
+        $('#filesTable').dataTable({
            "aLengthMenu": [[100 , 500, -1], [100, 500, "All"]],
            "iDisplayLength": 500,
             "oLanguage": {

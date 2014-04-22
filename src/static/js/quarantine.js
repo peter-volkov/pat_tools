@@ -2,7 +2,7 @@
  var quarantened = new HashTable({}); 
 
  function renderXml() {
-    var f = document.forms.executor.instruction;
+    var f = document.getElementById('recipeTextarea');
 
     var content = '<?xml version="1.0"?><recipe>';
 
