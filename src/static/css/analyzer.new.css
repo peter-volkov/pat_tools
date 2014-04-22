@@ -365,7 +365,7 @@ button::-moz-focus-inner
 
     vertical-align: middle;
 
-    background: url("../i/close.png") no-repeat;
+    background: url("../img/close.png") no-repeat;
 }
 
 .file__reset:hover

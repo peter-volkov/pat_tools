@@ -37,7 +37,7 @@ function getAnalyzeLogView() {
 
    $report_files = $analyzer->get_file_list();
 
-   $templ = new Template("static/templates/analyzer_result.tpl");
+   $templ = new Template("static/templates/analyzer.table.new.tpl");
 
    $table = '';
    $table_crit = '';
@@ -47,7 +47,7 @@ function getAnalyzeLogView() {
 
    $displayed = array();
 
-   $row = new Template("static/templates/analyzer_table_row.tpl");
+   $row = new Template("static/templates/analyzer.table.row.new.tpl");
    $table_content = '';
 
    foreach ($report_files as $item) {
@@ -67,7 +67,7 @@ function getAnalyzeLogView() {
            $row->set('mtime', $item['mtime']);
            $row->set('sigid', @$item['sigid']);
 
-	   $flag = '';
+    	   $flag = '';
            switch (@$item['detected']) {
                case 'c': $flag = '<span class="ico_critical">&#9763;</span>'; break;
                case 'w': $flag = '<span class="ico_warning">(!)</span>'; break;
@@ -211,7 +211,7 @@ function showView($template) {
 $content = "";
 if (isset($_POST['a']) && $_POST['a'] == 'show') {
     $content = getAnalyzeLogView();
-    template_output($content);
+    print($content);
 } else if (isset($_POST['a']) && $_POST['a'] == 'compare') {
     $content = getCompareLogsView();
     template_output($content);
@@ -221,6 +221,7 @@ if (isset($_POST['a']) && $_POST['a'] == 'show') {
     #showView('analyzer.upload.new.tpl');
 
 }
+
 
 
 
