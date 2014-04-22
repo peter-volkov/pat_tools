@@ -23,6 +23,22 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="cms_list">
+          <xs:complexType>
+            <xs:sequence>
+<!--              <xs:element name="cms">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="name"/>
+                      <xs:attribute type="xs:string" name="version"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>-->
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="files">
           <xs:complexType>
             <xs:sequence>
@@ -30,17 +46,18 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element type="xs:string" name="path"/>
-                    <xs:element type="xs:integer" name="size"/>
-                    <xs:element type="xs:integer" name="ctime"/>
-                    <xs:element type="xs:integer" name="mtime"/>
+                    <xs:element type="xs:int" name="size"/>
+                    <xs:element type="xs:int" name="ctime"/>
+                    <xs:element type="xs:int" name="mtime"/>
                     <xs:element type="xs:string" name="owner"/>
                     <xs:element type="xs:string" name="group"/>
-                    <xs:element type="xs:integer" name="access"/>
+                    <xs:element type="xs:short" name="access"/>
                     <xs:element type="xs:string" name="md5"/>
                   </xs:sequence>
                   <xs:attribute type="xs:string" name="detected" use="optional"/>
                   <xs:attribute type="xs:string" name="snippet" use="optional"/>
-                  <xs:attribute type="xs:integer" name="pos" use="optional"/>
+                  <xs:attribute type="xs:int" name="pos" use="optional"/>
+                  <xs:attribute type="xs:long" name="sigid" use="optional"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
