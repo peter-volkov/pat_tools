@@ -26,7 +26,7 @@
         <xs:element name="cms_list">
           <xs:complexType>
             <xs:sequence>
-<!--              <xs:element name="cms">
+              <xs:element name="cms">
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
@@ -35,7 +35,7 @@
                     </xs:extension>
                   </xs:simpleContent>
                 </xs:complexType>
-              </xs:element>-->
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -57,7 +57,6 @@
                   <xs:attribute type="xs:string" name="detected" use="optional"/>
                   <xs:attribute type="xs:string" name="snippet" use="optional"/>
                   <xs:attribute type="xs:int" name="pos" use="optional"/>
-                  <xs:attribute type="xs:long" name="sigid" use="optional"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

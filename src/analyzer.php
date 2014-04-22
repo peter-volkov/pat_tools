@@ -15,11 +15,8 @@ require_once("classes/Analyzer.inc.php");
 require_once("classes/Comparator.inc.php");
 require_once("classes/Archiver.inc.php");
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-if (isset($_POST['a'])) {
-
-if ($_POST['a'] == 'show') {
+function getAnalyzeLogView() {
    $wlf = array();
    $wl_files = array();
 
@@ -103,10 +100,10 @@ if ($_POST['a'] == 'show') {
    $templ->set('table_content', $table_content);
    $templ->set('env_content', $env);
 
-   $content = $templ->get();
+   return $templ->get();
+}
 
-  } else 
-     if (isset($_POST['a']) == 'compare') {
+function getCompareLogsView() {
         $type = (int)$_POST['filter'];
         switch ($type) {
            case 1:
@@ -174,17 +171,9 @@ if ($_POST['a'] == 'show') {
           $templ->set('table_content_' . $index, '');
         }
     
-        $content = $templ->get();
-     }
-} else  
-  {
-     $templ = new Template("static/templates/analyzer_upload_form.tpl");
-     $content = $templ->get();
-  }
+        return $templ->get();
+}
 
-template_output($content);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
 function getReportFile($var) {
    $new_report = Utils::get_uploaded_file($var);
 
@@ -206,12 +195,33 @@ function getReportFile($var) {
    return $new_report;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-function template_output($content) {
+function template_output($content, $template="analyzer.tpl") {
        $view = new View("/static/templates/");
        $view->set("title", "File Analyzer");
        $view->set("content", $content);
-       $view->display("analyzer.tpl");
+       $view->display($template);
 }
+
+function showView($template) {
+       $view = new View("/static/templates/");
+       $view->display($template);
+}
+
+
+$content = "";
+if (isset($_POST['a']) && $_POST['a'] == 'show') {
+    $content = getAnalyzeLogView();
+    template_output($content);
+} else if (isset($_POST['a']) && $_POST['a'] == 'compare') {
+    $content = getCompareLogsView();
+    template_output($content);
+} else {
+    $view = new Template("static/templates/analyzer.upload.new.tpl");
+    print($view->get());
+    #showView('analyzer.upload.new.tpl');
+
+}
+
+
+
 

@@ -5,7 +5,7 @@ define('PS_TITLE_COMPARE', 'Сравнить логи');
 define('PS_FILELIST', 'Список файлов');
 define('PS_UPLOAD_XML_REPORT', 'Загрузить отчет');
 define('PS_UPLOAD_XML_WHITELIST', 'Выбрать whitelist');
-define('PS_ANALYZE_BUTTON', 'АНАЛИЗИРОВАТЬ!');
+define('PS_ANALYZE_BUTTON', 'Анализировать');
 define('PS_WHITELIST_BY', 'Фильтровать по');
 define('PS_COMPARE_BY', 'Сравнивать по');
 define('PS_FILESIZE', 'по размеру');
@@ -19,7 +19,16 @@ define('PS_CHANGED_FILES', 'Измененные файлы');
 define('PS_ADDED_FILES', 'Новые файлы');
 define('PS_DELETED_FILES', 'Удаленные файлы');
 
-define('PS_SCRIPT_HEADER', 'Анализатор v0.7');
+define('PS_ANALYZER_TITLE', 'Анализатор логов');
+define('PS_ANALYZER_UPLOAD_FORM_HEADER', 'Загрузите лог для анализа');
+define('PS_ANALYZER_UPLOAD_FORM_TEXT', 'Лог создается при сканировании сайта инструментом и содержит информацию об окружении сайта (данные о вебсервере, интерпретаторе, системах контроля версий) а также файлах. Загружать лог можно как в виде архива, так и в виде распакованного xml.');
+
+define('PS_ANALYZER_FOOTER_CONTACTS', 'Обратная связь');
+define('PS_ANALYZER_FOOTER_HELP', 'Помощь');
+define('PS_ANALYZER_FOOTER_COPYRIGHT', '©&nbsp;2001&mdash;2013');
+
+define('PS_MESSAGE_NO_FILE_SELECTED', 'Файл лога не выбран');
+
 define('PS_GO_TO_RECIPE', 'Перейти к форме предписаний');
 define('PS_RECIPE_RESULT_HEADER', 'XML предписание');
 define('PS_ENVIRONMENT_HEADER', 'Переменные окружения');
