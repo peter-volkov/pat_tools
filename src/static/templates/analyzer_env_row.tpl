@@ -1,1 +1,0 @@
-<tr align=left><td>@@name@@</td><td>@@value@@</td></tr>

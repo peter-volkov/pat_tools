@@ -29,7 +29,7 @@
                             </button>
                             <button id="q_@@uid@@" class="button button_size_s i-bem" data-bem="{&quot;button&quot;:{}}" role="button" onclick="return add_quarantine('@@uid@@', '@@name@@')"><span class="button__text">Quarantine</span>
                             </button>
-                            <button id="d_@@uid@@" class="button button_size_s i-bem" data-bem="{&quot;button&quot;:{}}" role="button"><span class="button__text" onclick="return add_delete('@@uid@@', '@@name@@')">Delete</span>
+                            <button id="d_@@uid@@" class="button button_size_s i-bem" data-bem="{&quot;button&quot;:{}}" role="button" onclick="return add_delete('@@uid@@', '@@name@@')"><span class="button__text">Delete</span>
                             </button>
                         </div>
                     </td>

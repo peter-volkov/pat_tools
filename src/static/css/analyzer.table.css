@@ -1150,6 +1150,11 @@ button::-moz-focus-inner
 {
 }
 
+.table__line:hover
+{
+    background: #eeeded;
+}
+
 /* ../../desktop.blocks/table/__line/table__line.css end */
 /* ../../desktop.blocks/table/__line/_light/table__line_light_yes.css begin */
 .table__line_light_yes

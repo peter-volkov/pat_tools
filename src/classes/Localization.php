@@ -52,8 +52,27 @@ if ($lang == 'ru') {
     define('PS_ERR_SCRIPT_WRONG_LAUNCH_MODE', '%s could be launched in php-cli mode, from command line.'); // keep it in English for command line
     define('PS_ERR_UNPACK_ARCHIVE', 'Ошибка открытия архива');
 
+    define('PS_ANALYZER_TABLE_FLAG', 'Флаг');
     define('PS_TH_FLAG', 'Флаг');
     define('PS_TH_FILENAME', 'Имя файла');
+    define('PS_ANALYZER_TABLE_FILE_PATH', 'Имя файла');
+    define('PS_ANALYZER_TABLE_FILE_TYPE', 'Тип файла');    
+
+    define('PS_ANALYZER_TABLE_TIMESLOT', 'Временной интервал');
+    define('PS_ANALYZER_TABLE_FILTER_BUTTON_NAME', 'Фильтр');    
+
+    define('PS_ANALYZER_TABLE_FLAG_GREEN', 'Не найдено');
+    define('PS_ANALYZER_TABLE_FLAG_YELLOW', 'Подозрительный');        
+    define('PS_ANALYZER_TABLE_FLAG_RED', 'Опасный');        
+
+    define('PS_ANALYZER_TABLE_HEADER', 'PHP Antimalware Tool: Analyzer');        
+    define('PS_ANALYZER_TABLE_HEADER_TEXT', 'Анализатор логов PAT. Для эффективного поиска вредоносных файлов следует добавить вайтлисты или ранее сделанные логи. В качестве фильтров можно задать маску имени файлов и дату создания.');        
+
+
+    define('PS_RECIPE_RESULT_TEXT', 'Созданное предписание можно запустить в выполняторе предписаний PAT');        
+    define('PS_COPY_TO_CLIPBOARD', 'Копировать');        
+
+    
     define('PS_TH_SIZE', 'Размер');
     define('PS_TH_CREATED', 'Создан');
     define('PS_TH_MODIFIED', 'Изменен');
@@ -62,6 +81,12 @@ if ($lang == 'ru') {
     define('PS_TH_VALUE', 'Значение');
     define('PS_TH_OWNER', 'Владелец');
     define('PS_TH_GROUP', 'Группа');
+
+
+    define('PS_TH_VALUE', 'Значение');
+    define('PS_TH_OWNER', 'Владелец');
+    define('PS_TH_GROUP', 'Группа');
+
 
 } else {
     //FIX eng constants

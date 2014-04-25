@@ -1,24 +1,14 @@
 <!DOCTYPE html>
-<html class="ua_js_no">
-
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
     <title>{PS_ANALYZER_TITLE}</title>
-    <script>
-        (function (e, c) {
-            e[c] = e[c].replace(/(ua_js_)no/g, "$1yes");
-        })(document.documentElement, "className");
-    </script>
-
-    <link rel="stylesheet" href="static/css/analyzer.new.css" />
+    <link rel="stylesheet" href="static/css/analyzer.upload_form.css" />
 
     <meta name="description" content="" />
 </head>
 
 <body class="page">
     <div class="body">
-
         <div class="body__content">
             <h2 class="header">{PS_ANALYZER_UPLOAD_FORM_HEADER}</h2>
             <p class="sub-header sub-header_align_left">{PS_ANALYZER_UPLOAD_FORM_TEXT}</p>
@@ -44,7 +34,7 @@
             <div class="footer__item footer__item_type_copyright">{PS_ANALYZER_FOOTER_COPYRIGHT}</div>
         </div>
     </div>
-    <script src="static/js/analyzer.new.js"></script>
+    <script src="static/js/analyzer.upload_form.js"></script>
 </body>
 
 </html>

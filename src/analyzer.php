@@ -37,7 +37,7 @@ function getAnalyzeLogView() {
 
    $report_files = $analyzer->get_file_list();
 
-   $templ = new Template("static/templates/analyzer.table.new.tpl");
+   $templ = new Template("static/templates/analyzer.table.tpl");
 
    $table = '';
    $table_crit = '';
@@ -47,7 +47,7 @@ function getAnalyzeLogView() {
 
    $displayed = array();
 
-   $row = new Template("static/templates/analyzer.table.row.new.tpl");
+   $row = new Template("static/templates/analyzer.table.row.tpl");
    $table_content = '';
 
    foreach ($report_files as $item) {
@@ -69,8 +69,9 @@ function getAnalyzeLogView() {
 
     	   $flag = '';
            switch (@$item['detected']) {
-               case 'c': $flag = '<span class="ico_critical">&#9763;</span>'; break;
-               case 'w': $flag = '<span class="ico_warning">(!)</span>'; break;
+               case 'c': $flag = '<span class="table__flag table__flag_color_red"></span>'; break;
+               case 'w': $flag = '<span class="table__flag table__flag_color_yellow"></span>'; break;
+               default: $flag = '<span class="table__flag table__flag_color_green"></span>'; break;
            }
 
            $row->set('flagged', $flag);
@@ -89,16 +90,16 @@ function getAnalyzeLogView() {
    $server_info = $analyzer->get_server_info();
    $env = '';
 
-   $row = new Template("static/templates/analyzer_env_row.tpl");
+   /*$row = new Template("static/templates/analyzer_env_row.tpl");
    foreach ($server_info as $item_name => $item_value) {
       $row->prepare();
       $row->set('name', $item_name);
       $row->set('value', $item_value);
       $env .= $row->get();
-   }
+   } */
 
    $templ->set('table_content', $table_content);
-   $templ->set('env_content', $env);
+   //$templ->set('env_content', $env);
 
    return $templ->get();
 }
@@ -216,7 +217,7 @@ if (isset($_POST['a']) && $_POST['a'] == 'show') {
     $content = getCompareLogsView();
     template_output($content);
 } else {
-    $view = new Template("static/templates/analyzer.upload.new.tpl");
+    $view = new Template("static/templates/analyzer.upload.tpl");
     print($view->get());
     #showView('analyzer.upload.new.tpl');
 
